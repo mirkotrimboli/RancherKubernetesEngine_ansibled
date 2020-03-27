@@ -8,10 +8,10 @@
 
 - name: Download docker installation script
   get_url:
-    url: https://releases.rancher.com/install-docker/19.03.9.sh
-    dest: /root/19.03.9.sh
+    url: https://releases.rancher.com/install-docker/19.03.8.sh
+    dest: /root/19.03.8.sh
     mode: '0755'
   tags: prerequisite
 
 - name: Launch docker installation script
-  command: /root/19.03.9.sh
+  command: /root/19.03.8.sh
