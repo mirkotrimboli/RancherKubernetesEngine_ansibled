@@ -1,0 +1,11 @@
+[manager]
+rank8smng01 ansible_user=ubuntu
+
+[worker]
+rank8swrk01 ansible_user=ubuntu
+rank8swrk02 ansible_user=ubuntu
+rank8swrk03 ansible_user=ubuntu
+
+[cluster:children]
+manager
+worker
