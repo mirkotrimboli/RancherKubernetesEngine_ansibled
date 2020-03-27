@@ -8,8 +8,8 @@
 
 - name: Download docker installation script
   get_url:
-    url: https://releases.rancher.com/install-docker/{{ docker-version }}.sh
-    dest: /root/{{ docker-version }}.sh
+    url: https://releases.rancher.com/install-docker/{{ docker_version }}.sh
+    dest: /root/{{ docker_version }}.sh
     mode: '0755'
   tags: prerequisite
 
@@ -26,7 +26,7 @@
   tags: prerequisite
 
 - name: Launch docker installation script
-  command: /root/{{ docker-version }}.sh
+  command: /root/{{ docker_version }}.sh
   when: foundedDir.stat.isdir is not defined
   become: yes
   tags: prerequisite
