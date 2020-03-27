@@ -3,3 +3,8 @@
   become: yes
   roles:
     - { role: cluster_packages, tags: [ 'prerequisite' ] }
+
+- hosts: manager
+  become: yes
+  roles:
+    - { role: manager_startconsole, tags: [ 'prerequisite' ] }
