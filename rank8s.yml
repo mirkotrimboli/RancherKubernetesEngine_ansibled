@@ -1,5 +1,5 @@
 ---
-- hosts: manager
+- hosts: cluster
   become: yes
   roles:
     - { role: cluster_packages, tags: [ 'prerequisite' ] }
