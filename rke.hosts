@@ -1,0 +1,22 @@
+[rancher]
+hostname01 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+#hostname02 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+#hostname03 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+
+[k8s_master]
+hostname01 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+hostname02 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+hostname03 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+
+[k8s_worker]
+hostname01 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+hostname02 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+hostname03 ansible_user={{user}} ansible_password={{password}} ansible_sudo_pass={{password}}
+
+[k8s_node:children]
+k8s_master
+k8s_worker
+
+[rke:children]
+rancher
+k8s_node

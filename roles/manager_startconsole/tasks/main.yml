@@ -1,5 +1,0 @@
----
-- name: Launch Rancher console
-  command: docker run -d --restart=unless-stopped --name {{ aws_mng_hostname }} -p 80:80 -p 443:443 rancher/rancher
-  become: yes
-  tags: prerequisite

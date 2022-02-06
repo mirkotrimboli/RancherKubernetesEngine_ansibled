@@ -1,0 +1,11 @@
+user: "" # username 
+password: "" # password
+vars_user: "{{user}}"
+#forwardproxy_cfg: "secureproxy.sh.j2" # Use this for proxied delivery
+#proxy_user: "" # Use this for proxied delivery
+#proxy_pass: "" # Use this for proxied delivery
+#proxy_url: "" # Use this for proxied delivery
+#proxy_port: "" # Use this for proxied delivery
+#no_proxy: "localhost,127.0.0.1,::1,localaddress,*.localdomain" # Use this for proxied delivery
+#network: "IP.IP.IP.0/subnet" # Use this for proxied delivery
+#apt_conf: "aptsecure.conf.j2" # Use this for proxied delivery

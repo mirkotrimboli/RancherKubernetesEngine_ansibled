@@ -1,0 +1,14 @@
+vars_package:
+  - pip
+#vars_proxy: "http://{{proxy_user}}:{{proxy_pass}}@{{proxy_url}}:{{proxy_port}}" # Use this for proxied delivery
+vars_pip:
+  - docker
+docker_script: "20.10.7.sh"
+vars_service:
+  - docker
+#forwardproxy_script: "forwardproxy.docker.j2" # Use this for proxied delivery
+#docker_no_proxy: "0.0.0.0,10.0.0.0/8,cattle-system.svc,172.16.0.0/12,.svc,.cluster.local" # Use this for proxied delivery
+#domain: ".somethings.it" # Use this for proxied delivery
+#console_url: "" # Use this for proxied delivery
+console_name: "Console258"
+console_image: "rancher/rancher:v2.5.8"

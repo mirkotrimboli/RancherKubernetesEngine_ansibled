@@ -1,0 +1,4 @@
+[Service]
+Environment=HTTP_PROXY="{{vars_proxy}}"
+Environment=HTTPS_PROXY="{{vars_proxy}}"
+Environment=NO_PROXY="{{no_proxy}},{{network}},{{docker_no_proxy}},{{domain}},{{console_url}}"

@@ -1,0 +1,24 @@
+---
+- name: Set 24-nf_conntrack_max.rules
+  template:
+    src: 24-nf_conntrack_max.rules.j2
+    dest: /etc/udev/rules.d/24-nf_conntrack_max.rules
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: requisite
+
+- name: Set 24-nf_conntrack_max.conf
+  template:
+    src: 24-nf_conntrack_max.conf.j2
+    dest: /etc/sysctl.d/24-nf_conntrack_max.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: requisite
+
+- name: Make it persistent
+  command: sysctl -w net.nf_conntrack_max=131072; sysctl -p
+  tags: requisite

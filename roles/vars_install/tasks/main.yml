@@ -1,0 +1,7 @@
+---
+- name: Ensure "{{vars_package}}" is installed
+  package:
+    name: "{{item}}"
+    state: present
+  loop: "{{vars_package}}"
+  tags: requisite

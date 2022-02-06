@@ -1,0 +1,10 @@
+---
+- name: Add {{vars_user}} in /etc/sudoers
+  lineinfile:
+    path: /etc/sudoers
+    line: "{{vars_user}}        ALL=(ALL)       NOPASSWD: ALL"
+    owner: root
+    group: root
+    mode: '0440'
+    state: present
+  tags: prerequisite

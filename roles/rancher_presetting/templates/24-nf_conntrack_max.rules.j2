@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", \
+  RUN+="/usr/lib/systemd/systemd-sysctl --prefix=/net/netfilter/nf_conntrack_max"

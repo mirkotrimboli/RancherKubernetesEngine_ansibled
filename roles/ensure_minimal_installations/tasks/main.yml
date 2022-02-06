@@ -1,0 +1,12 @@
+---
+- name: Ensure bash-completion is installed
+  package:
+    name: bash-completion
+    state: present
+  tags: prerequisite
+
+- name: Ensure LVM2 is installed
+  package:
+    name: lvm2
+    state: present
+  tags: prerequisite

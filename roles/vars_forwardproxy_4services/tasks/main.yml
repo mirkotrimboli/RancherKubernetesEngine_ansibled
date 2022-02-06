@@ -1,0 +1,21 @@
+---
+- name: Create path in {{vars_service}}.service.d
+  file:
+    path: /etc/systemd/system/{{item}}.service.d
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+  loop: "{{vars_service}}"
+  tags: requisite
+
+- name: Set forwardproxy.conf for {{vars_service}}
+  template:
+    src: "{{forwardproxy_script}}"
+    dest: /etc/systemd/system/{{item}}.service.d/forwardproxy.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: no
+  loop: "{{vars_service}}"
+  tags: requisite

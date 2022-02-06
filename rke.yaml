@@ -1,0 +1,34 @@
+---
+- hosts: rke
+  become: yes
+  roles:
+    - { role: vars_user_cando_sudo, tags: [ 'prerequisite' ] }
+#    - { role: vars_forwardproxy_4systems, tags: [ 'prerequisite' ] } # Use this for proxied delivery
+    - { role: ensure_minimal_installations, tags: [ 'prerequisite' ] }
+    - { role: update_systems, tags: [ 'prerequisite' ] }
+    - { role: secure_minimal, tags: [ 'prerequisite' ] }
+    - { role: reboot, tags: [ 'prerequisite' ] }
+
+- hosts: rancher
+  become: yes
+  roles:
+    - { role: vars_install, tags: [ 'requisite' ] }
+    - { role: vars_pip_install, tags: [ 'requisite' ] }
+#    - { role: vars_pip_install_proxied, tags: [ 'requisite' ] } # Switch this for proxied delivery
+
+- hosts: rke
+  become: yes
+  roles:
+    - { role: vars_docker_packages, tags: [ 'requisite' ] }
+#    - { role: vars_forwardproxy_4services, tags: [ 'requisite' ] } # Use this for proxied delivery
+    - { role: update_systems, tags: [ 'prerequisite' ] }
+    - { role: vars_service_enabled, tags: [ 'requisite' ] }
+    - { role: vars_service_stopped, tags: [ 'requisite' ] }
+    - { role: reboot, tags: [ 'prerequisite' ] }
+
+- hosts: rancher
+  become: yes
+  roles:
+    - { role: rancher_presetting, tags: [ 'requisite' ] }
+    - { role: vars_rancher_bootstrap, tags: [ 'configuration' ] }
+#    - { role: vars_rancher_bootstrap_proxied, tags: [ 'configuration' ] } # Switch this for proxied delivery

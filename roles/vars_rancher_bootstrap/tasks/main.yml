@@ -1,0 +1,23 @@
+---
+- name: Check if {{console_name}} exist
+  docker_container_info:
+    name: "{{console_name}}"
+  register: container
+  tags: configuration
+
+- name: Container exist. Skipping
+  debug:
+    msg: "The container exist. Skipping run"
+  when: container.exists
+  tags: configuration
+
+- name: Print information about container
+  debug:
+    var: container.container
+  when: container.exists
+  tags: configuration
+
+- name: Bootstrap Rancher console in Docker
+  command: docker run -d --restart=unless-stopped --privileged --name {{console_name}} -p 80:80 -p 443:443 {{console_image}}
+  when: not container.exists
+  tags: configuration

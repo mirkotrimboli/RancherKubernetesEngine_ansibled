@@ -1,0 +1,6 @@
+---
+- name: Upgrade all packages to the latest
+  package:
+    name: '*'
+    state: latest
+  tags: prerequisite

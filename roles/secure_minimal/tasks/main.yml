@@ -1,0 +1,34 @@
+---
+- name: Ensure SELinux is installed for RedHat family
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - selinux-policy
+    - selinux-policy-targeted
+    - policycoreutils
+  when: (ansible_facts['os_family'] == "RedHat")
+  tags: prerequisite
+
+- name: Ensure SELinux is set to permissive mode for RedHat family
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=permissive
+  when: (ansible_facts['os_family'] == "RedHat")
+  tags: prerequisite
+
+- name: Ensure SELinux is set to targeted mode for RedHat family
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUXTYPE='
+    line: SELINUXTYPE=targeted
+  when: (ansible_facts['os_family'] == "RedHat")
+  tags: prerequisite
+
+- name: Ensure firewalld is absent
+  package:
+    name: firewalld
+    state: absent
+  tags: prerequisite

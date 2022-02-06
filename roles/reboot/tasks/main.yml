@@ -1,0 +1,6 @@
+---
+- name: Unconditionally reboot
+  become: true
+  reboot:
+    reboot_timeout: 90
+  tags: prerequisite

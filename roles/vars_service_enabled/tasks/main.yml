@@ -1,0 +1,7 @@
+---
+- name: Make sure {{vars_service}} is enabled
+  systemd:
+    name: "{{item}}"
+    enabled: yes
+  loop: "{{vars_service}}"
+  tags: requisite

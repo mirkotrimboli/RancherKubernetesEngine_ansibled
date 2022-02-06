@@ -1,0 +1,30 @@
+---
+- name: Set {{docker_script}}
+  template:
+    src: "{{docker_script}}"
+    dest: "/root/{{docker_script}}"
+    owner: root
+    group: root
+    mode: '0777'
+    backup: yes
+  tags: requisite
+
+- name: Check if /run/docker exist - Exit if not
+  stat:
+    path: /run/docker
+  register: foundedDir
+  tags: requisite
+
+- name: Thinking to do
+  debug:
+    msg: "Directory exist. Skipping installation"
+  when:
+    - foundedDir.stat.isdir is defined
+  tags: requisite
+
+- name: Launch docker installation script
+  command: /root/{{docker_script}}
+  when:
+    - foundedDir.stat.isdir is not defined
+  become: yes
+  tags: requisite

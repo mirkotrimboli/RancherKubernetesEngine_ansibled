@@ -1,0 +1,7 @@
+---
+- name: Ensure pip "{{vars_pip}}" is installed
+  pip:
+    name: "{{item}}"
+    state: present
+  loop: "{{vars_pip}}"
+  tags: requisite

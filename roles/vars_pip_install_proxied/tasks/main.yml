@@ -1,0 +1,10 @@
+---
+- name: Ensure pip "{{vars_pip}}" is installed
+  pip:
+    name: "{{item}}"
+    state: present
+  environment:
+    HTTP_PROXY: "{{vars_proxy}}"
+    HTTPS_PROXY: "{{vars_proxy}}"
+  loop: "{{vars_pip}}"
+  tags: requisite

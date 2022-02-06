@@ -1,0 +1,49 @@
+---
+- name: Set forwardproxy.sh
+  template:
+    src: "{{forwardproxy_cfg}}"
+    dest: /etc/profile.d/forwardproxy.sh
+    owner: root
+    group: root
+    mode: '0775'
+    backup: yes
+  tags: prerequisite
+
+- name: Check if 80private-aptproxy exist for Debian family
+  stat:
+    path: /etc/apt/apt.conf.d/80private-aptproxy
+  register: file
+  when: (ansible_facts['os_family'] == "Debian")
+  tags: configuration
+
+- name: 80private-aptproxy exist. Skipping for Debian family
+  debug:
+    msg: "File exist. Skipping installation"
+  when:
+    - file.stat.exists
+    - (ansible_facts['os_family'] == "Debian")
+  tags: configuration
+
+- name: Set proxy in apt.conf.d for Debian family
+  template:
+    src: "{{apt_conf}}"
+    dest: /etc/apt/apt.conf.d/80private-aptproxy
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  when:
+    - not file.stat.exists
+    - (ansible_facts['os_family'] == "Debian")
+  tags: prerequisite
+
+- name: Set proxy in yum.conf.d for RedHat family
+  template:
+    src: yum.conf.j2
+    dest: /etc/yum.conf.d/proxy.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  when: (ansible_facts['os_family'] == "RedHat")
+  tags: prerequisite
