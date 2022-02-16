@@ -20,5 +20,7 @@
   tags: requisite
 
 - name: Make it persistent
-  command: sysctl -w net.nf_conntrack_max=131072; sysctl -p
+  shell: |
+    sysctl -w net.nf_conntrack_max=131072
+    sysctl -p
   tags: requisite
