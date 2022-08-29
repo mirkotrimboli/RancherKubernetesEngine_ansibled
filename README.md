@@ -1,5 +1,5 @@
 # RancherKubernetesEngine_ansibled
-This playbook aims to produce an RKE.
+This playbook aims to produce an RKE in Stand Alone mode on Docker.
 
 # Release note
 * The code work on multiple Operative Systems Linux based.
